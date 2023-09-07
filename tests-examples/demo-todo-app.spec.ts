@@ -11,7 +11,7 @@ const TODO_ITEMS = [
 ];
 
 test.describe('New Todo', () => {
-  test.only('@smoke - should allow me to add todo items', async ({ page }) => {
+  test('@smoke - should allow me to add todo items ', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -21,9 +21,8 @@ test.describe('New Todo', () => {
 
     // Make sure the list only has one todo item.
     await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0]
+      TODO_ITEMS[1] // intentionally changed here to fail the test
     ]);
-    
 
     // Create 2nd todo.
     await newTodo.fill(TODO_ITEMS[1]);
@@ -38,7 +37,7 @@ test.describe('New Todo', () => {
     await checkNumberOfTodosInLocalStorage(page, 2);
   });
 
-  test.only('should clear text input field when an item is added', async ({ page }) => {
+  test('should clear text input field when an item is added', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -80,7 +79,7 @@ test.describe('Mark all as completed', () => {
     await checkNumberOfTodosInLocalStorage(page, 3);
   });
 
-  test('should allow me to mark all items as completed', async ({ page }) => {
+  test('@smoke - should allow me to mark all items as completed', async ({ page }) => {
     // Complete all todos.
     await page.getByLabel('Mark all as complete').check();
 
@@ -122,7 +121,7 @@ test.describe('Mark all as completed', () => {
 
 test.describe('Item', () => {
 
-  test('should allow me to mark items as complete', async ({ page }) => {
+  test('@smoke - should allow me to mark items as complete', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -192,7 +191,7 @@ test.describe('Item', () => {
   });
 });
 
-test.describe('Editing', () => {
+test.describe('@smoke - Editing', () => {
   test.beforeEach(async ({ page }) => {
     await createDefaultTodos(page);
     await checkNumberOfTodosInLocalStorage(page, 3);
@@ -258,7 +257,7 @@ test.describe('Editing', () => {
 });
 
 test.describe('Counter', () => {
-  test('should display the current number of todo items', async ({ page }) => {
+  test('@smoke - should display the current number of todo items', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
     
@@ -283,7 +282,7 @@ test.describe('Clear completed button', () => {
     await createDefaultTodos(page);
   });
 
-  test('should display the correct text', async ({ page }) => {
+  test('@smoke - should display the correct text', async ({ page }) => {
     await page.locator('.todo-list li .toggle').first().check();
     await expect(page.getByRole('button', { name: 'Clear completed' })).toBeVisible();
   });
@@ -304,7 +303,7 @@ test.describe('Clear completed button', () => {
 });
 
 test.describe('Persistence', () => {
-  test('should persist its data', async ({ page }) => {
+  test('@smoke - should persist its data', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -340,7 +339,7 @@ test.describe('Routing', () => {
     await checkTodosInLocalStorage(page, TODO_ITEMS[0]);
   });
 
-  test('should allow me to display active items', async ({ page }) => {
+  test('@smoke - should allow me to display active items', async ({ page }) => {
     const todoItem = page.getByTestId('todo-item');
     await page.getByTestId('todo-item').nth(1).getByRole('checkbox').check();
 
