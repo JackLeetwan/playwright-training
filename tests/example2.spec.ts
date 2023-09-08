@@ -1,6 +1,6 @@
 import { test, type Page } from '@playwright/test';
 import { HomePage } from '../pages/home-page';
-import { TopMenuPage } from '../pages/top-menu-page';
+import { TopMenuPage } from '../pages/topMenu-page';
 
 const URL = 'https://playwright.dev/';
 let homePage: HomePage;

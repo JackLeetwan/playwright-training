@@ -1,8 +1,8 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { type Locator, type Page, expect } from '@playwright/test';
 
 export class TopMenuPage {
     readonly page: Page;
-    readonly getStartedLink: Locator;
+    readonly geStartedBtn: Locator;
     readonly nodeLink: Locator;
     readonly javaLink: Locator;
     readonly nodeLabel: Locator;
@@ -12,7 +12,7 @@ export class TopMenuPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.getStartedLink = page.getByRole('link', { name: 'Get started' });
+        this.geStartedBtn = page.getByRole('link', {name:'Get started'});
         this.nodeLink = page.getByRole('button', {name: 'Node.js'});
         this.javaLink = page.getByRole('navigation', { name: 'Main' }).getByText('Java');
         this.nodeLabel = page.getByText(this.nodeDescription, {exact:true});
